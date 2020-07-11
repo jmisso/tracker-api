@@ -4,7 +4,9 @@ const { MongoClient } = require('mongodb');
 let db;
 
 async function connectToDb() {
-  const url = process.env.DB_URL || 'mongodb://localhost/issuetracker';
+  // const url = process.env.DB_URL || 'mongodb://localhost/issuetracker';
+  // set up for mLab MongoDB on Heroku
+  const url = process.env.MONGODB_URI || 'mongodb://localhost/issuetracker';
   const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
   await client.connect();
   console.log('Connected to MongoDB at', url);
